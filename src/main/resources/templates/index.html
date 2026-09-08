@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Books</title>
+</head>
+<body>
+
+<p>Book List</p>
+
+<ul>
+    <li th:each="book : ${books}"
+        th:text="${book.title +  ' ' + book.author + ' ' + book.publicationYear + ' ' + book.isbn + ' ' + book.price}">
+    </li>
+
+    <p><a th:href="@{/kysyStudent}">Add friend</a></p>
+</ul>
+
+</body>
+</html>
