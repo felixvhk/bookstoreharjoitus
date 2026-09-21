@@ -1,38 +1,76 @@
 package hh.backend.bookstorefelix.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Book {
 
-    private String title;
-    private String author;
-    private int publicationYear;
-    private String isbn;
-    private int price;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    public Book(String title, String author, int publicationYear, String isbn, int price) {
-        this.title = title;
-        this.author = author;
-        this.publicationYear = publicationYear;
-        this.isbn = isbn;
-        this.price = price;
+    private String author;
+    private String title;
+    private String isbn;
+    private int publicationYear;
+
+    protected Book() {
     }
 
-    public String getTitle() {
-        return title;
+    public Book(String author, String title, String isbn, int publicationYear) {
+        this.author = author;
+        this.title = title;
+        this.isbn = isbn;
+        this.publicationYear = publicationYear;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAuthor() {
         return author;
     }
 
-    public int getPublicationYear() {
-        return publicationYear;
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getIsbn() {
         return isbn;
     }
 
-    public int getPrice() {
-        return price;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public int getPublicationYear() {
+        return publicationYear;
+    }
+
+    public void setPublicationYear(int publicationYear) {
+        this.publicationYear = publicationYear;
+    }
+
+    @Override
+    public String toString() {
+        return "Book id=" + id +
+                ", title=" + title +
+                ", author=" + author;
     }
 }

@@ -2,18 +2,51 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Books</title>
+    <style>
+        
+        html {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 45%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgb(180, 180, 180);
+        }
+    </style>
 </head>
 <body>
 
-<p>Book List</p>
+<h1>Books</h1>
 
-<ul>
-    <li th:each="book : ${books}"
-        th:text="${book.title +  ' ' + book.author + ' ' + book.publicationYear + ' ' + book.isbn + ' ' + book.price}">
-    </li>
+<table>
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>ISBN</th>
+            <th>Year</th>
+        </tr>
+    </thead>
 
-    <p><a th:href="@{/kysyStudent}">Add friend</a></p>
-</ul>
+    <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.isbn}"></td>
+            <td th:text="${book.publicationYear}"></td>
+        </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
