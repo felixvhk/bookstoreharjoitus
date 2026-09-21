@@ -31,8 +31,27 @@ public class BookstorefelixApplication {
 				"9780747532699", 
 				1997
 			);
-
 			bookRepository.save(book1);
+
+			Book book2 = new Book( 
+				"Aku Ankka", 
+				"Aku Ankka ja salaperäinen saari", 
+				"9780747532629", 
+				2005
+			);
+			bookRepository.save(book2);
+
+			Book book3 = new Book( 
+				"Darth Vader", 
+				"The Dark Side of the Force", 
+				"9780747532630", 
+				1980
+			);
+			bookRepository.save(book3);
+
+			for (Book book : bookRepository.findAll()) {
+				System.out.println(book);
+			}
 		};
 	}
 
