@@ -60,6 +60,19 @@
                required>
     </div>
 
+    <div>
+        <label for="category">Category:</label>
+
+        <select id="category" th:field="*{category}">
+            <option value="">-- Select category --</option>
+
+            <option th:each="category : ${categories}"
+                    th:value="${category.id}"
+                    th:text="${category.name}">
+            </option>
+        </select>
+    </div>
+
     <button type="submit">Save</button>
 
 </form>

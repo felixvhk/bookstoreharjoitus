@@ -4,9 +4,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.repository.CrudRepository;
 
 import hh.backend.bookstorefelix.domain.Book;
 import hh.backend.bookstorefelix.domain.BookRepository;
+
+import hh.backend.bookstorefelix.domain.Category;
+import hh.backend.bookstorefelix.domain.CategoryRepository;
 
 @SpringBootApplication
 public class BookstorefelixApplication {
@@ -17,19 +21,28 @@ public class BookstorefelixApplication {
 
 	// http://localhost:8080/index
 	// http://localhost:8080/h2-console
+	// http://localhost:8080/booklist
 
 	// jdbc:h2:mem:testdb
 
-	// http://localhost:8080/booklist
-
 	@Bean
-	public CommandLineRunner demo(BookRepository bookRepository) {
+	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
+
+			Category fantasy = new Category("Fantasy");
+			Category fiction = new Category("Fiction");
+			Category programming = new Category("Programming");
+
+			categoryRepository.save(fantasy);
+			categoryRepository.save(fiction);
+			categoryRepository.save(programming);
+
 			Book book1 = new Book( 
 				"J.K. Rowling", 
 				"Harry Potter and the Philosopher's Stone", 
 				"9780747532699", 
-				1997
+				1997,
+				fantasy
 			);
 			bookRepository.save(book1);
 
@@ -37,7 +50,8 @@ public class BookstorefelixApplication {
 				"Aku Ankka", 
 				"Aku Ankka ja salaperäinen saari", 
 				"9780747532629", 
-				2005
+				2005,
+				fiction
 			);
 			bookRepository.save(book2);
 
@@ -45,7 +59,8 @@ public class BookstorefelixApplication {
 				"Darth Vader", 
 				"The Dark Side of the Force", 
 				"9780747532630", 
-				1980
+				1980,
+				programming
 			);
 			bookRepository.save(book3);
 

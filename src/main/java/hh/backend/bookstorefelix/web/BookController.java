@@ -7,14 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import hh.backend.bookstorefelix.domain.Book;
 import hh.backend.bookstorefelix.domain.BookRepository;
+import hh.backend.bookstorefelix.domain.CategoryRepository;
 
 @Controller
 public class BookController {
 
     private final BookRepository bookRepository;
+    private final CategoryRepository categoryRepository;
 
-    public BookController(BookRepository bookRepository) {
+    public BookController(BookRepository bookRepository, CategoryRepository categoryRepository) {
         this.bookRepository = bookRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     // Show all books
@@ -27,7 +30,8 @@ public class BookController {
     // Show add book form
     @RequestMapping("/addbook")
     public String showAddBookForm(Model model) {
-        model.addAttribute("book", new Book("", "", "", 0));
+        model.addAttribute("book", new Book("", "", "", 0, null));
+        model.addAttribute("categories", categoryRepository.findAll());
         return "addbook";
     }
 
@@ -52,6 +56,8 @@ public class BookController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid book id: " + id));
 
         model.addAttribute("book", book);
+        model.addAttribute("categories", categoryRepository.findAll());
         return "editbook";
     }
+
 }
