@@ -23,6 +23,9 @@ public class BookstorefelixApplication {
 	// http://localhost:8080/h2-console
 	// http://localhost:8080/booklist
 
+	// http://localhost:8080/books
+	// http://localhost:8080/books/2
+
 	// jdbc:h2:mem:testdb
 
 	@Bean

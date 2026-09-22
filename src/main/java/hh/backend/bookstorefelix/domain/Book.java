@@ -1,5 +1,7 @@
 package hh.backend.bookstorefelix.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,8 @@ public class Book {
     private int publicationYear;
 
     @ManyToOne
+    // Prevents infinite recursion during JSON serialization by ignoring the "books" property in the Category class
+    @JsonIgnoreProperties ("books") 
     @JoinColumn(name = "categoryid")
     private Category category;
 
